@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Phone Number Lookup API
+  version: 1.0.0
+
+paths:
+  /v1/phone-numbers:
+    get:
+      summary: Look up information about a phone number
+      parameters:
+        - name: phoneNumber
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: countryCode
+          in: query
+          required: false
+          schema:
+            type: string
+            pattern: '^[A-Z]{2}$'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhoneNumberResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    PhoneNumberResponse:
+      type: object
+      required:
+        - phoneNumber
+        - countryCode
+        - areaCode
+        - localPhoneNumber
+      properties:
+        phoneNumber:
+          type: string
+        countryCode:
+          type: string
+        areaCode:
+          type: string
+        localPhoneNumber:
+          type: string
+
+    ErrorResponse:
+      type: object
+      required:
+        - phoneNumber
+        - error
+      properties:
+        phoneNumber:
+          type: string
+        error:
+          type: object
+          additionalProperties:
+            type: string

@@ -1,0 +1,4 @@
+package: pkg
+output: internal/pkg/server.gen.go
+generate:
+  - types
