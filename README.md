@@ -32,6 +32,19 @@ curl "http://localhost:8080/v1/phone-numbers?phoneNumber=2125690123&countryCode=
 go test ./...
 ```
 
+## Generate OpenAPI types
+
+```bash
+oapi-codegen --config web/oapi-server.yaml web/api_spec.yaml
+```
+
+## Generate mocks
+
+
+```bash
+mockery --name=Service --dir=internal/service --output=internal/service/mocks --outpkg=mocks
+```
+
 ---
 
 ## FAQ
