@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"oxio-phone-lookup/internal/web/controller"
+	"oxio-phone-lookup/web/controller"
 	"oxio-phone-lookup/internal/service"
 
 	"github.com/go-chi/chi/v5"
